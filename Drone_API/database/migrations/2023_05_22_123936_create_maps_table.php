@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('maps', function (Blueprint $table) {
             $table->id();
-            $table->string('image_link');
+            $table->string('image_name');
             $table->integer('height');
             $table->integer('width');
             $table->foreignId("drone_id")->constrained()->onDelete("cascade")->onUpdate("cascade");

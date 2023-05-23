@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Authentication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register',[Authentication::class,'register']);
 Route::post('/login',[Authentication::class,'login']);
 Route::post('/logout',[Authentication::class,'logout']);
+
+// DRONE ====================
+Route::resource("drones", DroneController::class);
+
+// MAP ====================
+Route::resource("maps", MapController::class);

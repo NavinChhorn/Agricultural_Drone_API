@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DroneResource;
+use App\Http\Resources\LocationResource;
 use Illuminate\Http\Request;
+use App\Models\Drone;
 
 class DroneController extends Controller
 {
@@ -11,9 +14,11 @@ class DroneController extends Controller
      */
     public function index()
     {
-        //
+        $drones = Drone::all();
+        $drones = DroneResource::collection($drones);
+        return response()->json(['success'=> true, "data"=>$drones], 200);
     }
-
+    
     /**
      * Store a newly created resource in storage.
      */
@@ -21,13 +26,20 @@ class DroneController extends Controller
     {
         //
     }
-
+    
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        $drone = Drone::find($id);
+        $drone = new DroneResource($drone);
+        $location=[
+            "drone_id"=>$drone["id"],
+            "latitude"=>$drone["location"]["latitude"],
+            "longitude"=>$drone["location"]["longitude"],
+        ];
+        return response()->json(['success'=> true, "data"=>$location], 200);
     }
 
     /**
