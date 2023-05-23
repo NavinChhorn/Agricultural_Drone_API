@@ -2,47 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Authentication extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function register(RegisterRequest $request){
+        $user = User::create($request->all());
+        $user["password"]=bcrypt( $user["password"]);
+
+        $token = $user->createToken('API Token',['select', 'create', 'delete', 'update'])->plainTextToken;
+        return response()->json([
+            'message' => "Your account has been created",
+            'user' => $user,
+            'token' => $token
+        ],200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function login(LoginRequest $request){
+        $credentails = $request->only('email','password');
+     
+        if(Auth::attempt($credentails)){
+            $user = Auth::user();
+            $token = $user->createToken("API TOKEN")->plainTextToken;
+            
+            return response()->json([
+                'message'=>'Login successfully!',
+                'token'=>$token
+            ]);
+        }
+        return response()->json(['message'=>"Invalid credetail !"],404);
+       
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    public function logout(Request $request){
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        $request->user()->tokens()->delete();
+        return response()->json(['message' => 'Logged out successfully']);
+        
+     
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    
 }
