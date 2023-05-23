@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DroneResource;
 use Illuminate\Http\Request;
+use App\Models\Drone;
 
 class DroneController extends Controller
 {
@@ -11,7 +13,9 @@ class DroneController extends Controller
      */
     public function index()
     {
-        //
+        $drones = Drone::all();
+        $drones = DroneResource::collection($drones);
+        return response()->json(['success'=> true, "data"=>$drones], 200);
     }
 
     /**
