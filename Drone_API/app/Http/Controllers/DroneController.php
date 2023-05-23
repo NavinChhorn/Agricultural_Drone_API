@@ -40,7 +40,6 @@ class DroneController extends Controller
             "longitude"=>$drone["location"]["longitude"],
         ];
         return response()->json(['success'=> true, "data"=>$location], 200);
-
     }
 
     /**

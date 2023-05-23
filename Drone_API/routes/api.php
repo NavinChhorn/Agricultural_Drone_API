@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DroneController;
+use App\Http\Controllers\MapController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // DRONE ====================
 Route::resource("drones", DroneController::class);
+
+// MAP ====================
+Route::resource("maps", MapController::class);
