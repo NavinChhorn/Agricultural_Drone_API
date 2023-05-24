@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlanRequest;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(PlanRequest $request)
     {
-        //
+        $plan = Plan::create($request->all());
+        return response()->json([
+            'message'=>'Create plan success !',
+            'data'=>$plan,
+        ],200);
+        return $request;
     }
 
     /**

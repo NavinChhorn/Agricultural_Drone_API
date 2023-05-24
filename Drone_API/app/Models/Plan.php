@@ -9,17 +9,21 @@ class Plan extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'datetime ',
+        'datetime',
         'area',
         'density',
         'type',
-        'farmer_id'
+        'user_id'
     ];
-    public function farmer(){
-        return $this->belongsTo(Farmer::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
     public function instructions(){
         return $this->hasMany(Instruction::class);
     }
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 
 }

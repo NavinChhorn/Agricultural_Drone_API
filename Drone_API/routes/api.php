@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Authentication;
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\PlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +33,14 @@ Route::middleware("auth:sanctum")->group(function(){
         Route::get('/',[MapController::class,'index']);
         Route::get('/{province_name}/{farm_id}',[MapController::class,'show']);
     });
-    
+    // Route Plans =============================================
+    Route::prefix('plans')->group(function(){
+        Route::post('/plan',[PlanController::class,'store']);
+    });
     // LOGOUT ====================
     Route::post('/logout',[Authentication::class,'logout']);
 });
+
 
 // ============== Authentication API ===========================
 Route::post('/register',[Authentication::class,'register']);
