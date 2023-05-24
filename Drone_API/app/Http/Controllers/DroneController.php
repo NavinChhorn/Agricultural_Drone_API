@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Resources\DroneResource;
 use App\Http\Resources\LocationResource;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class DroneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
     
     /**

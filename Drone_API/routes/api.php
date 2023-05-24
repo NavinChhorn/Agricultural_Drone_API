@@ -34,6 +34,7 @@ Route::middleware("auth:sanctum")->group(function(){
         Route::get('/',[MapController::class,'index']);
         Route::get('/{province_name}/{farm_id}',[MapController::class,'show']);
         Route::delete('/{province_name}/{id}',[ProvinceController::class,'destroy']);
+        Route::post('/{province_name}/{id}',[ProvinceController::class,'addMap']);
        
     });
     // Route Plans =============================================

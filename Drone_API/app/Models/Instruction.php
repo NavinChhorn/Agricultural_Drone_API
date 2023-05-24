@@ -20,4 +20,8 @@ class Instruction extends Model
     public function drone(){
         return $this->belongsTo(Drone::class);
     }
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

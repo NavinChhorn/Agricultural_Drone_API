@@ -25,4 +25,8 @@ class Drone extends Model
     public function maps():HasMany{
         return $this->hasMany(Map::class);
     }
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

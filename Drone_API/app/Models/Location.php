@@ -16,4 +16,8 @@ class Location extends Model
     public function drones():HasMany{
         return $this->hasMany(Drone::class);
     }
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }
