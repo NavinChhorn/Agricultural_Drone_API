@@ -6,6 +6,7 @@ use App\Http\Controllers\Authentication;
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\ProvinceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::middleware("auth:sanctum")->group(function(){
     Route::prefix("maps")->group(function(){
         Route::get('/',[MapController::class,'index']);
         Route::get('/{province_name}/{farm_id}',[MapController::class,'show']);
+        Route::delete('/{province_name}/{id}',[ProvinceController::class,'destroy']);
+       
     });
     // Route Plans =============================================
     Route::prefix('plans')->group(function(){
@@ -45,4 +48,5 @@ Route::middleware("auth:sanctum")->group(function(){
 // ============== Authentication API ===========================
 Route::post('/register',[Authentication::class,'register']);
 Route::post('/login',[Authentication::class,'login']);
+
 

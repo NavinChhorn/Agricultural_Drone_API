@@ -14,4 +14,8 @@ class Province extends Model
     public function farms(){
         return $this->hasMany(Farm::class);
     }
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

@@ -22,4 +22,8 @@ class Farm extends Model
     public function maps(){
         return $this->hasMany(Map::class);
     }
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

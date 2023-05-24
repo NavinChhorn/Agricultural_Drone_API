@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->string('battery');
-            $table->foreignId('location_id')->constrained(table:"locations")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId('location_id')->constrained()->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }
