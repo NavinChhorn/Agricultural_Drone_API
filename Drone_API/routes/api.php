@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Authentication;
 use App\Http\Controllers\DroneController;
+use App\Http\Controllers\MapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,10 @@ Route::middleware("auth:sanctum")->group(function(){
     Route::resource("drones", DroneController::class);
 
     // MAP ====================
-    Route::resource("maps", MapController::class);
+    Route::prefix("maps")->group(function(){
+        Route::get('/',[MapController::class,'index']);
+        Route::get('/{province_name}/{farm_id}',[MapController::class,'show']);
+    });
     
     // LOGOUT ====================
     Route::post('/logout',[Authentication::class,'logout']);

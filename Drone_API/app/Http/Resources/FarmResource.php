@@ -18,6 +18,7 @@ class FarmResource extends JsonResource
             "id"=>$this->id,
             "name"=>$this->name,
             "provice"=>$this->province->name,
+            "maps"=>MapResource::collection($this->maps)
         ];
     }
 }
