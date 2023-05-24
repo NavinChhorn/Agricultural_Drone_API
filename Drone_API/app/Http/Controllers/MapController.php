@@ -35,17 +35,19 @@ class MapController extends Controller
      */
     public function show(string $province_name, string $farm_id)
     {
-        $provinces=new ProvinceResource(Province::where("name", $province_name)->first());
-        // return $provinces;
-        $farms =FarmResource::collection($provinces["farms"]);
-        foreach($farms as $farm){
-            if($farm["id"] == $farm_id){
-                $farm=new FarmResource($farm);
-                return MapResource::collection($farm["maps"]);
+        $province =Province::where("name", $province_name)->get();
+        if($province->count() > 0){
+            $province=new ProvinceResource($province[0]);
+            $farms =FarmResource::collection($province["farms"]);
+            foreach($farms as $farm){
+                if($farm["id"] == $farm_id){
+                    $farm=new FarmResource($farm);
+                    $maps = MapResource::collection($farm["maps"]);
+                    return response()->json(['success'=> true, "data"=>$maps], 200);
+                }
             }
         }
-        return $farms;
-        // return ProvinceResource::collection(Province::where("name", $province_name)->get());
+        return response()->json(["success"=> false, "message"=>"Map not Found"], 401);
     }
 
     /**
