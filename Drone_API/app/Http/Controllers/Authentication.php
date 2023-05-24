@@ -7,12 +7,17 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class Authentication extends Controller
 {
     public function register(RegisterRequest $request){
-        $user = User::create($request->all());
-        $user["password"]=bcrypt( $user["password"]);
+        $user = User::create([
+            "name"=>$request["name"],
+            "email"=>$request["email"],
+            "password"=>bcrypt($request["password"]),
+            "farm_id"=>$request["farm_id"],
+        ]);
 
         $token = $user->createToken('API Token',['select', 'create', 'delete', 'update'])->plainTextToken;
         return response()->json([
@@ -35,15 +40,11 @@ class Authentication extends Controller
             ]);
         }
         return response()->json(['message'=>"Invalid credetail !"],404);
-       
     }
 
     public function logout(Request $request){
-
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Logged out successfully']);
-        
-     
     }
     
 }
