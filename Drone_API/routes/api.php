@@ -28,6 +28,7 @@ Route::middleware("auth:sanctum")->group(function(){
     
     // DRONE ====================
     Route::resource("drones", DroneController::class);
+    Route::get('drones/{id}/location', [DroneController::class, "getDroneLocation"]);
 
     // MAP ====================
     Route::prefix("maps")->group(function(){

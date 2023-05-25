@@ -16,15 +16,15 @@ class InstructionSeeder extends Seeder
         $instructions=[
             [
                 "speed"=>100,
-                "altitude"=>"100m",
+                "altitude"=>"100m"
             ],
             [
                 "speed"=>200,
-                "altitude"=>"200m",
+                "altitude"=>"200m"
             ],
             [
                 "speed"=>300,
-                "altitude"=>"300m",
+                "altitude"=>"300m"
             ],
         ];
         foreach($instructions as $instruction){

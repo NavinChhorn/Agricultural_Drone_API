@@ -21,8 +21,8 @@ class Drone extends Model
     public function location():BelongsTo{
         return $this->belongsTo(Location::class);
     }
-    public function instruction():HasOne{
-        return $this->hasOne(Instruction::class);
+    public function instruction():BelongsTo{
+        return $this->belongsTo(Instruction::class);
     }
     public function plan():BelongsTo{
         return $this->belongsTo(Plan::class);

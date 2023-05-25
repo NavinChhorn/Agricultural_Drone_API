@@ -19,6 +19,8 @@ class DroneResource extends JsonResource
             "type"=>$this->type,
             "battery"=>$this->battery,
             "location"=>new LocationResource($this->location),
+            "plan"=>$this->plan,
+            "instruction"=>$this->instruction,
         ];
     }
 }
