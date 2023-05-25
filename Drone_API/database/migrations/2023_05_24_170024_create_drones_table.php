@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('drones', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('battery');
+            $table->string('bettery');
             $table->foreignId('instruction_id')->constrained(table:"instructions")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId('plan_id')->constrained(table:"plans")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId('location_id')->constrained(table:"locations")->onDelete("cascade")->onUpdate("cascade");

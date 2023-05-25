@@ -16,21 +16,21 @@ class DroneSeeder extends Seeder
         $drones=[
             [
                 "type"=>"SPRAY",
-                "battery"=>"42000mAh",
+                "bettery"=>"42000",
                 "plan_id"=>1,
                 "instruction_id"=>1,
                 "location_id"=>1,
             ],
             [
                 "type"=>"MAPPING",
-                "battery"=>"20000mAh",
+                "bettery"=>"20000",
                 "plan_id"=>2,
                 "instruction_id"=>2,
                 "location_id"=>2,
             ],
             [
                 "type"=>"SPRAY",
-                "battery"=>"50000mAh",
+                "bettery"=>"50000",
                 "plan_id"=>3,
                 "instruction_id"=>3,
                 "location_id"=>3,

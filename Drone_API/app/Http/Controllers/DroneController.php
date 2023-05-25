@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\DroneUpdateRequest;
 use App\Http\Resources\DroneResource;
 use App\Http\Resources\LocationResource;
 use Illuminate\Http\Request;
 use App\Models\Drone;
+use Database\Seeders\DroneSeeder;
 
 class DroneController extends Controller
 {
@@ -46,9 +47,12 @@ class DroneController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(DroneUpdateRequest $request, string $id)
     {
-        //
+        $drone = Drone::find($id);
+        $drone->update($request->all());
+        $drone = new DroneResource($drone);
+        return response()->json(['message'=>'Update successfully!','drone'=>$drone],200);
     }
 
     /**

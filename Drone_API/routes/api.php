@@ -27,8 +27,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware("auth:sanctum")->group(function(){
     
     // DRONE ====================
-    Route::resource("drones", DroneController::class);
-
+     Route::resource("drones", DroneController::class);
+   
     // MAP ====================
     Route::prefix("maps")->group(function(){
         Route::get('/',[MapController::class,'index']);
@@ -49,5 +49,6 @@ Route::middleware("auth:sanctum")->group(function(){
 // ============== Authentication API ===========================
 Route::post('/register',[Authentication::class,'register']);
 Route::post('/login',[Authentication::class,'login']);
+
 
 
