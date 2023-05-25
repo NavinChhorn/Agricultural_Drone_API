@@ -16,9 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         // To run seeder ============
         $this->call(LocationSeeder::class);
-        $this->call(DroneSeeder::class);
         $this->call(ProvinceSeeder::class);
         $this->call(FarmSeeder::class);
+        $this->call(InstructionSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(PlanSeeder::class);
+        $this->call(DroneSeeder::class);
         $this->call(MapSeeder::class);
     }
 }

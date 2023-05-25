@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('speed');
             $table->string('altitude');
-            $table->foreignId('plan_id')->constrained()->onDelete('cascade')->onUpdate("cascade");
-            $table->foreignId('drone_id')->constrained()->onDelete('cascade')->onUpdate("cascade");
+            $table->boolean('start_plan')->default(false);
             $table->timestamps();
         });
     }

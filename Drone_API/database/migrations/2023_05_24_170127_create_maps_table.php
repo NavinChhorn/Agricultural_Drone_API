@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('image_name');
             $table->integer('height');
             $table->integer('width');
-            $table->foreignId("drone_id")->constrained()->onDelete("cascade")->onUpdate("cascade");
-            $table->foreignId("farm_id")->constrained()->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("drone_id")->constrained(table:"drones")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("farm_id")->constrained(table:"farms")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

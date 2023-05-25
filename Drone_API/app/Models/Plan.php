@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Plan extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         'datetime',
         'area',
@@ -15,15 +17,17 @@ class Plan extends Model
         'type',
         'user_id'
     ];
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
-    public function instructions(){
-        return $this->hasMany(Instruction::class);
-    }
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function drones():HasMany{
+        return $this->hasMany(Drone::class);
+    }
+   
 
 }

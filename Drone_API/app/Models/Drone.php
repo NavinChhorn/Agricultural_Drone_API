@@ -14,13 +14,18 @@ class Drone extends Model
     protected $fillable = [
         'type',
         'bettery',
+        'plan_id',
+        'instruction_id',
         'location_id'
     ];
     public function location():BelongsTo{
         return $this->belongsTo(Location::class);
     }
-    public function instructions():HasMany{
-        return $this->hasMany(Instruction::class);
+    public function instruction():HasOne{
+        return $this->hasOne(Instruction::class);
+    }
+    public function plan():BelongsTo{
+        return $this->belongsTo(Plan::class);
     }
     public function maps():HasMany{
         return $this->hasMany(Map::class);

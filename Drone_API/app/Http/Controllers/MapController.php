@@ -43,7 +43,9 @@ class MapController extends Controller
                 if($farm["id"] == $farm_id){
                     $farm=new FarmResource($farm);
                     $maps = MapResource::collection($farm["maps"]);
-                    return response()->json(['success'=> true, "data"=>$maps], 200);
+                    if(count($maps)>0){
+                        return response()->json(['success'=> true, "data"=>$maps], 200);
+                    }
                 }
             }
         }
