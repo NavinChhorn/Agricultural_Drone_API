@@ -17,16 +17,22 @@ class DroneSeeder extends Seeder
             [
                 "type"=>"SPRAY",
                 "battery"=>"42000mAh",
+                "plan_id"=>1,
+                "instruction_id"=>1,
                 "location_id"=>1,
             ],
             [
                 "type"=>"MAPPING",
                 "battery"=>"20000mAh",
+                "plan_id"=>2,
+                "instruction_id"=>2,
                 "location_id"=>2,
             ],
             [
                 "type"=>"SPRAY",
                 "battery"=>"50000mAh",
+                "plan_id"=>3,
+                "instruction_id"=>3,
                 "location_id"=>3,
             ]
         ];

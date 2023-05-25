@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Instruction extends Model
 {
@@ -11,13 +12,9 @@ class Instruction extends Model
     protected $fillable = [
         'speed',
         'altitude',
-        'plan_id',
-        'drone_id'
+        'start_plan'
     ];
-    public function plane(){
-        return $this->belongsTo(Plan::class);
-    }
-    public function drone(){
+    public function drone():BelongsTo{
         return $this->belongsTo(Drone::class);
     }
 }

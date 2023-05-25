@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('datetime');
+            $table->dateTime('datetime');
             $table->string('area');
             $table->integer('density');
-            $table->foreignId('user_id')->constrained()->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId('user_id')->constrained(table:"users")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }
