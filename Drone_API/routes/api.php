@@ -38,9 +38,10 @@ Route::middleware("auth:sanctum")->group(function(){
        
     });
     // Route Plans =============================================
-    Route::prefix('plans')->group(function(){
-        Route::post('/plan',[PlanController::class,'store']);
-    });
+    // Route::prefix('plans')->group(function(){
+    //     Route::post('/plan',[PlanController::class,'store']);
+    //     Route::post('/{name_plan}',[PlanController::class,'store']);
+    // });
     // LOGOUT ====================
     Route::post('/logout',[Authentication::class,'logout']);
 });
@@ -50,5 +51,8 @@ Route::middleware("auth:sanctum")->group(function(){
 Route::post('/register',[Authentication::class,'register']);
 Route::post('/login',[Authentication::class,'login']);
 
-
+Route::prefix('plans')->group(function(){
+    Route::post('/plan',[PlanController::class,'store']);
+    Route::get('/{name_plan}',[PlanController::class,'show']);
+});
 
