@@ -28,11 +28,13 @@ class PlanRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name'=>'required',
             'type'=>'required',
             'datetime'=>'required',
             'area'=>'required',
             'density'=>'required',
-            'user_id'=>'required'
+            'user_id'=>'required',
+            
         ];
     }
 }

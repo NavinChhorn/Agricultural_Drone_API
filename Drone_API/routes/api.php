@@ -43,6 +43,7 @@ Route::middleware("auth:sanctum")->group(function(){
     // Route Plans =============================================
     Route::prefix('plans')->group(function(){
         Route::post('/plan',[PlanController::class,'store']);
+        Route::get('/{name_plan}',[PlanController::class,'show']);
     });
 
     // LOGOUT ====================
@@ -58,7 +59,4 @@ Route::get("/instructions/{drone_id}", [DroneController::class, "getInstructions
 // ============== Authentication API ===========================
 Route::post('/register',[Authentication::class,'register']);
 Route::post('/login',[Authentication::class,'login']);
-
-
-
 
