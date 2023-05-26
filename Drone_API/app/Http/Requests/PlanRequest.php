@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator as ValidationValidator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class PlanRequest extends FormRequest
 {
@@ -12,6 +14,10 @@ class PlanRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+    protected function failedValidation(ValidationValidator $validator)
+    {
+        throw new HttpResponseException(response()->json(['success' => false, 'message' => $validator->errors()], 412));
     }
 
     /**

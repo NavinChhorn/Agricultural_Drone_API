@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Drone;
+use App\Models\Instruction;
+use App\Http\Resources\DroneResource;
 
 class FarmerController extends Controller
 {
@@ -35,7 +38,7 @@ class FarmerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       
     }
 
     /**
