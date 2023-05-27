@@ -44,7 +44,7 @@ class DroneController extends Controller
         if(isset($drone)){
             $instruction = Instruction::find($drone["instruction_id"]);
             $instruction->update($request->all());
-            return response()->json(['success' => true, "message" => "Drone is instructing"], 200);
+            return response()->json(['success' => true, "message" => "Plan is starting"], 200);
         }
         return response()->json(["success"=>false, "message"=>"Drone is not found"], 401);
     }
@@ -83,17 +83,18 @@ class DroneController extends Controller
     /**
      * Get drone's instructions
      */
-    public function getInstructions(string $id)
+    public function getInstructions()
     {
-        $drone = Drone::find($id);
-        if(isset($drone)){
-            $drone = new DroneResource($drone);
+        $drones = Drone::all();
+        $drones = DroneResource::collection($drones);
+        $instructions = [];
+        foreach($drones as $drone){
             $instruction=[
                 "drone_id"=>$drone["id"],
                 "instruction"=>$drone["instruction"],
             ];
-            return response()->json(["success"=>true, 'data' => $instruction], 200);
+            array_push($instructions, $instruction);
         }
-        return response()->json(["success"=>false, "message"=>"Drone is not found"], 401);
+        return response()->json(["success"=>true, 'data' => $instructions], 200);
     }
 }

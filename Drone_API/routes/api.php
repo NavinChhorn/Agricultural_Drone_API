@@ -52,7 +52,7 @@ Route::middleware("auth:sanctum")->group(function(){
 Route::put("drones/{id}/status", [DroneController::class, "updateDroneStatus"]);
 
 // ============== INSTRUCTIONS ====================
-Route::get("/instructions/{drone_id}", [DroneController::class, "getInstructions"]);
+Route::get("/instructions", [DroneController::class, "getInstructions"]);
 
 // ============== AUTHENTICATION ===========================
 Route::post('/register',[Authentication::class,'register']);
