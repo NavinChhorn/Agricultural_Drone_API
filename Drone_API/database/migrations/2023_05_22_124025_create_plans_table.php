@@ -18,6 +18,7 @@ return new class extends Migration
             $table->dateTime('datetime');
             $table->string('area');
             $table->integer('density');
+            $table->foreignId('farm_id')->constrained(table:"farms")->onDelete("cascade")->onUpdate("cascade");
             $table->foreignId('user_id')->constrained(table:"users")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });

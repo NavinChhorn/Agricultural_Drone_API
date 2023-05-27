@@ -9,44 +9,25 @@ use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
-
+    /**
+     * Add plan.
+     */
     public function store(PlanRequest $request)
     {
         $plan = Plan::create($request->all());
-        return response()->json([
-            'message'=>'Create plan success !',
-            'data'=>$plan,
-        ],200);
-        return $request;
+        return response()->json(['message'=>'Create plan success !','data'=>$plan],200);
     }
 
     /**
-     * Display the specified resource.
+     * Get a plan.
      */
     public function show(string $plan_name)
     {
-        $plan = Plan::where('name',$plan_name)->get();
-
-        if($plan->count()>0){
-            $plan = new PlanResouce($plan[0]);
-            return response()->json(['message'=>'Get success !','data'=>$plan],200);
+        $plan = Plan::where('name',$plan_name)->first();
+        if(isset($plan)){
+            $plan = new PlanResouce($plan);
+            return response()->json(["success"=>true,'message'=>'Get success!','data'=>$plan],200);
         }
-        return response()->json(['message'=>"Can't find this plan name !"]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json(['message'=>"Plan not found !"], 401);
     }
 }

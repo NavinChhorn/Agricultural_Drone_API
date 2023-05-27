@@ -15,6 +15,7 @@ class Farm extends Model
         'name',
         'province_id'
     ];
+
     protected $hidden = [
         'created_at',
         'updated_at'
@@ -23,11 +24,10 @@ class Farm extends Model
     public function province():BelongsTo{
         return $this->belongsTo(Province::class);
     }
-    public function farmers():HasMany{
-        return $this->hasMany(Farmer::class);
-    }
     public function maps():HasMany{
         return $this->hasMany(Map::class);
     }
-   
+    public function plans():HasMany{
+        return $this->hasMany(Plan::class);
+    }
 }

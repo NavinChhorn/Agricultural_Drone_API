@@ -21,7 +21,7 @@ class MapResource extends JsonResource
             "width"=>$this->width,
             "farm_id"=>$this->farm->id,
             "farm_name"=>$this->farm->name,
-            "drone"=>new DroneResource($this->drone),
+            "drone_id"=>$this->drone->id,
         ];
     }
 }

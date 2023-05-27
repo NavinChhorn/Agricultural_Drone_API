@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MapRequest;
 use App\Http\Resources\FarmResource;
 use App\Http\Resources\MapResource;
 use App\Http\Resources\ProvinceResource;
@@ -13,7 +14,7 @@ use App\Models\Farm;
 class MapController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List all maps.
      */
     public function index()
     {
@@ -23,25 +24,39 @@ class MapController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Add map to a farm
      */
-    public function store(Request $request)
-    {
-        //
+    public function addMap(MapRequest $request, string $province_name,string $id){
+        $province = Province::where("name",$province_name)->first();
+        if(isset($province)){
+            $farms = $province->farms;
+            foreach($farms as $farm){
+                if($farm['id']==$id){
+                    $map = Map::create([
+                        'image_name'=>$request->input('image_name'),
+                        'height'=>$request->input('height'),
+                        'width'=>$request->input('width'),
+                        'drone_id'=>$request->input('drone_id'),
+                        'farm_id'=>$id
+                    ]);
+                    return response()->json(['message'=>'Map is created.','data'=>$map],200); 
+                }
+            }
+        }
+        return response()->json(['message'=>'Farm not found !'],200);
     }
 
     /**
-     * Display the specified resource.
+     * Download map image from a farm
      */
-    public function show(string $province_name, string $farm_id)
+    public function getMap(string $province_name, string $farm_id)
     {
-        $province =Province::where("name", $province_name)->get();
-        if($province->count() > 0){
-            $province=new ProvinceResource($province[0]);
-            $farms =FarmResource::collection($province["farms"]);
+        $province =Province::where("name", $province_name)->first();
+        if(isset($province)){
+            $farms = $province->farms;     // farms : is a function in province model.
             foreach($farms as $farm){
                 if($farm["id"] == $farm_id){
-                    $farm=new FarmResource($farm);
+                    $maps = Farm::find($farm_id)->maps;     // maps : is a function in farm model.
                     $maps = MapResource::collection($farm["maps"]);
                     if(count($maps)>0){
                         return response()->json(['success'=> true, "data"=>$maps], 200);
@@ -52,19 +67,24 @@ class MapController extends Controller
         return response()->json(["success"=> false, "message"=>"Map not Found"], 401);
     }
 
-    /**
-     * Update the specified resource in storage.
+      /**
+     * Delete maps from a farm
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function deleteMap(string $province_name, string $id )
+    {   
+        $province = Province::where("name",$province_name)->first();
+        if(isset($province)){
+            $farms = $province->farms;      // farms : is a function in province model.
+            foreach($farms as $farm){
+                if($farm['id']==$id){
+                    $maps = Farm::find($id)->maps;      // maps : is a function in farm model.
+                    foreach($maps as $map){
+                        $map->delete();
+                    }
+                    return response()->json(['message'=>'Delete success!'],200);
+                }
+            }
+        }
+        return response()->json(['message'=>'Farm not found !'],200);
     }
 }

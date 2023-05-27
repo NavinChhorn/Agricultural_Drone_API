@@ -18,6 +18,12 @@ class Drone extends Model
         'instruction_id',
         'location_id'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+    
     public function location():BelongsTo{
         return $this->belongsTo(Location::class);
     }
@@ -30,8 +36,5 @@ class Drone extends Model
     public function maps():HasMany{
         return $this->hasMany(Map::class);
     }
-    protected $hidden = [
-        'created_at',
-        'updated_at'
-    ];
+   
 }

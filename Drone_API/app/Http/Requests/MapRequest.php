@@ -9,7 +9,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 class MapRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the map is authorized to make this request.
      */
     public function authorize(): bool
     {

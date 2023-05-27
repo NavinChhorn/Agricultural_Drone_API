@@ -9,7 +9,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 class PlanRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the plan is authorized to make this request.
      */
     public function authorize(): bool
     {
@@ -33,8 +33,8 @@ class PlanRequest extends FormRequest
             'datetime'=>'required',
             'area'=>'required',
             'density'=>'required',
+            'farm_id'=>'required',
             'user_id'=>'required',
-            
         ];
     }
 }

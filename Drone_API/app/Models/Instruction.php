@@ -15,11 +15,13 @@ class Instruction extends Model
         'altitude',
         'start_plan'
     ];
-    public function drone():HasOne{
-        return $this->hasOne(Drone::class);
-    }
+
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
+
+    public function drone():HasOne{
+        return $this->hasOne(Drone::class);
+    }
 }

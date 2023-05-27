@@ -17,14 +17,12 @@ class UserSeeder extends Seeder
             [
                 'name'=>'visal',
                 'email'=>'sal@gmail.com',
-                'password'=>'12345',
-                "farm_id"=>1
+                'password'=>'12345'
             ],
             [
                 'name'=>'navin',
                 'email'=>'navin@gmail.com',
-                'password'=>'12345',
-                "farm_id"=>1
+                'password'=>'12345'
             ],
         ];
         foreach($users as $user){

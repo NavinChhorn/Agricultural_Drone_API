@@ -9,7 +9,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 class DroneUpdateRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the drone is authorized to make this request.
      */
     public function authorize(): bool
     {
@@ -25,7 +25,6 @@ class DroneUpdateRequest extends FormRequest
         return [
             'bettery'=>'required',
             'location_id'=>'required',
-            
         ];
     }
 }

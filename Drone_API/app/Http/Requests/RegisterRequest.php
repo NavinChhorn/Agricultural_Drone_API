@@ -29,8 +29,7 @@ class RegisterRequest extends FormRequest
                 'unique:users',
                 'email'
             ],
-            'password'=>"required",
-            "farm_id" => "required"
+            'password'=>"required"
         ];
     }
 }

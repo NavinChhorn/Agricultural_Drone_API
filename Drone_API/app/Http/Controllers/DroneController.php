@@ -48,8 +48,7 @@ class DroneController extends Controller
         }
         return response()->json(["success"=>false, "message"=>"Drone is not found"], 401);
     }
-
-
+    
     /**
      * Get drone location.
      */

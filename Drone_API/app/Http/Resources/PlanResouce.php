@@ -20,7 +20,6 @@ class PlanResouce extends JsonResource
             'datetime'=>$this->datetime,
             'area'=>$this->area,
             'density'=>$this->density,
-            'drones'=> DroneResource::collection($this->drones)
         ];
     }
 }

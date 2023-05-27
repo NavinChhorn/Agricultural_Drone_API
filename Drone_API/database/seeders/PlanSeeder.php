@@ -20,6 +20,7 @@ class PlanSeeder extends Seeder
                 'datetime'=>'2023-06-10 23:59:59',
                 'area'=>'POLYGON(1223.23, 1232.545, 326554.323, 323231.6132, 32323.434)',
                 'density'=>299,
+                "farm_id"=>1,
                 "user_id"=>1
             ],
             [
@@ -28,6 +29,7 @@ class PlanSeeder extends Seeder
                 'datetime'=>'2023-06-10 23:59:59',
                 'area'=>'POLYGON(1223.23, 1232.545, 326554.323, 323231.6132, 32323.434)',
                 'density'=>300,
+                "farm_id"=>2,
                 "user_id"=>1
             ],
             [
@@ -36,6 +38,7 @@ class PlanSeeder extends Seeder
                 'datetime'=>'2023-06-10 23:59:59',
                 'area'=>'POLYGON(1223.23, 1232.545, 326554.323, 323231.6132, 32323.434)',
                 'density'=>400,
+                "farm_id"=>1,
                 "user_id"=>1
             ],
         ];

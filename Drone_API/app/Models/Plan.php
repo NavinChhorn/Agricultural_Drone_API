@@ -4,7 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\{
+                                            BelongsTo,
+                                            HasMany
+                                            };
 
 class Plan extends Model
 {
@@ -16,8 +19,10 @@ class Plan extends Model
         'area',
         'density',
         'type',
+        'farm_id',
         'user_id'
     ];
+
     protected $hidden = [
         'created_at',
         'updated_at'
@@ -29,6 +34,7 @@ class Plan extends Model
     public function drones():HasMany{
         return $this->hasMany(Drone::class);
     }
-   
-
+    public function farm():BelongsTo{
+        return $this->belongsTo(farm::class);
+    }
 }

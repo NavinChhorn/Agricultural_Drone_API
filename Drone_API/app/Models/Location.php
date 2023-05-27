@@ -13,11 +13,14 @@ class Location extends Model
         'latitude ',
         'longitude',
     ];
-    public function drones():HasMany{
-        return $this->hasMany(Drone::class);
-    }
+    
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
+
+    public function drones():HasMany{
+        return $this->hasMany(Drone::class);
+    }
+   
 }

@@ -15,13 +15,18 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // To run seeder ============
-        $this->call(LocationSeeder::class);
-        $this->call(ProvinceSeeder::class);
-        $this->call(FarmSeeder::class);
-        $this->call(InstructionSeeder::class);
-        $this->call(UserSeeder::class);
-        $this->call(PlanSeeder::class);
-        $this->call(DroneSeeder::class);
-        $this->call(MapSeeder::class);
+        $seeders=[
+            LocationSeeder::class,
+            ProvinceSeeder::class,
+            FarmSeeder::class,
+            InstructionSeeder::class,
+            UserSeeder::class,
+            PlanSeeder::class,
+            DroneSeeder::class,
+            MapSeeder::class,
+        ];
+        foreach($seeders as $seeder){
+            $this->call($seeder);
+        }
     }
 }

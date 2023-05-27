@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Province extends Model
 {
@@ -11,11 +12,14 @@ class Province extends Model
     protected $fillable = [
         'name'
     ];
-    public function farms(){
-        return $this->hasMany(Farm::class);
-    }
+
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
+
+    public function farms():HasMany{
+        return $this->hasMany(Farm::class);
+    }
+    
 }
